@@ -1,18 +1,15 @@
 {
-  "name": "status-reports",
+  "name": "@codexist/status-reports",
   "version": "1.0.0",
   "description": "Log status updates with specific coloring and styling",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": {
-    "name": "Jake Johnson",
-    "url": "https://jakejohnson.pro"
-  },
+  "author": "Jake Johnson (https://jakejohnson.pro)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/JakeJohnson05/status-reports"
+    "url": "git+https://github.com/JakeJohnson05/status-reports.git"
   },
   "engines": {
     "node": ">=8"
@@ -21,5 +18,14 @@
   "dependencies": {
     "chalk": "^3.0.0",
     "log-symbols": "^3.0.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/JakeJohnson05/status-reports/issues"
+  },
+  "homepage": "https://github.com/JakeJohnson05/status-reports#readme",
+  "devDependencies": {},
+  "keywords": [
+    "js",
+    "javascript"
+  ]
 }
