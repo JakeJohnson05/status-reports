@@ -1,11 +1,25 @@
 {
   "name": "status-reports",
   "version": "1.0.0",
-  "description": "",
+  "description": "Log status updates with specific coloring and styling",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": {
+    "name": "Jake Johnson",
+    "url": "https://jakejohnson.pro"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JakeJohnson05/status-reports"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "log-symbols": "^3.0.0"
+  }
 }
