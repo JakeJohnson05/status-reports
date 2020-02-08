@@ -10,7 +10,7 @@ $ npm install @codexist/status-reports
 
 ## Usage
 ```js
-const statusReporter = require('status-reports');
+const statusReporter = require('@codexist/status-reports');
 
 statusReporter.success('Database successfully synced');
 ```
@@ -18,7 +18,7 @@ statusReporter.success('Database successfully synced');
 All Options
 
 ```js
-const statusReporter = require('status-reports');
+const statusReporter = require('@codexist/status-reports');
 
 statusReporter.success(string, [...string]);
 statusReporter.error(string, [...string]);
