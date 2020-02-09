@@ -5,15 +5,13 @@
 declare namespace statusReporters {
 
 	interface Options {
-		readonly symbol: string;
-		readonly message: string;
-		readonly extra: any[];
+		readonly fullMessage: string;
 	}
 
 	interface Logger {
 		(): void;
 	}
-	
+
 }
 
 declare type SingleReporter = statusReporters.Options & statusReporters.Logger;

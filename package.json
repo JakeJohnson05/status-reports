@@ -1,6 +1,6 @@
 {
   "name": "@codexist/status-reports",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "Log status updates with specific coloring and styling",
   "author": "Jake Johnson (https://jakejohnson.pro)",
   "main": "index.js",
