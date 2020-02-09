@@ -8,20 +8,25 @@ const fullFormat = (symbol, message, extraIndent = '|', ...extra) => [
 	...extra.reduce((acc, cur) => [...acc, '\n', extraIndent, cur], [])
 ];
 
-const statusReporter = (logger, chalkConfig, symbol, message, ...extra) => {
+const statusReporter = (exit = false, chalkConfig, symbol, message, ...extra) => {
 	const reporter = {};
 	const formattedMessage = fullFormat(symbol, chalkConfig(message), chalkConfig('|'), ...extra);
+	const logger = exit ? console.error : console.error;
 
-	reporter.template = () => logger(...formattedMessage);
+	reporter.template = () => {
+		logger(...formattedMessage);
+		exit && process.exit(1);
+	}
 	reporter.template.fullMessage = formattedMessage.join(' ');
+
 
 	return reporter.template;
 };
 
-const success = (message, ...extra) => statusReporter(console.log, chalk.green, symbols.success, message, ...extra);
-const error = (message, ...extra) => statusReporter(console.error, chalk.red, symbols.error, message, ...extra);
-const warn = (message, ...extra) => statusReporter(console.log, chalk.yellow, symbols.warning, message, ...extra);
-const info = (message, ...extra) => statusReporter(console.log, chalk.blueBright, symbols.info, message, ...extra);
+const success = (message, ...extra) => statusReporter(false, chalk.green, symbols.success, message, ...extra);
+const error = (message, ...extra) => statusReporter(true, chalk.red, symbols.error, message, ...extra);
+const warn = (message, ...extra) => statusReporter(false, chalk.yellow, symbols.warning, message, ...extra);
+const info = (message, ...extra) => statusReporter(false, chalk.blueBright, symbols.info, message, ...extra);
 
 module.exports = {
 	success,
