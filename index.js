@@ -1,4 +1,5 @@
 'use strict';
+
 const chalk = require('chalk');
 const symbols = require('log-symbols');
 
@@ -8,25 +9,34 @@ const fullFormat = (symbol, message, extraIndent = '|', ...extra) => [
 	...extra.reduce((acc, cur) => [...acc, '\n', extraIndent, cur], [])
 ];
 
-const statusReporter = (exit = false, chalkConfig, symbol, message, ...extra) => {
+const statusReporter = (exitProcess, config, message, ...extra) => {
+	const formattedMessage = fullFormat(config.symbol, config.chalk(message), config.chalk('|'), ...extra);
+	const logger = exitProcess ? console.error : console.log;
 	const reporter = {};
-	const formattedMessage = fullFormat(symbol, chalkConfig(message), chalkConfig('|'), ...extra);
-	const logger = exit ? console.error : console.error;
 
 	reporter.template = () => {
 		logger(...formattedMessage);
-		exit && process.exit(1);
-	}
-	reporter.template.fullMessage = formattedMessage.join(' ');
+		if (exitProcess) {
+			throw new Error(message);
+		}
+	};
 
+	reporter.template.fullMessage = formattedMessage.join(' ');
 
 	return reporter.template;
 };
 
-const success = (message, ...extra) => statusReporter(false, chalk.green, symbols.success, message, ...extra);
-const error = (message, ...extra) => statusReporter(true, chalk.red, symbols.error, message, ...extra);
-const warn = (message, ...extra) => statusReporter(false, chalk.yellow, symbols.warning, message, ...extra);
-const info = (message, ...extra) => statusReporter(false, chalk.blueBright, symbols.info, message, ...extra);
+const config = {
+	success: {chalk: chalk.green, symbol: symbols.success},
+	error: {chalk: chalk.red, symbol: symbols.error},
+	warn: {chalk: chalk.yellow, symbol: symbols.warn},
+	info: {chalk: chalk.blueBright, symbol: symbols.info}
+};
+
+const success = (message, ...optionalParams) => statusReporter(false, config.success, message, ...optionalParams);
+const error = (message, ...optionalParams) => statusReporter(true, config.error, message, ...optionalParams);
+const warn = (message, ...optionalParams) => statusReporter(false, config.warn, message, ...optionalParams);
+const info = (message, ...optionalParams) => statusReporter(false, config.info, message, ...optionalParams);
 
 module.exports = {
 	success,

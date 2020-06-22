@@ -1,28 +1,35 @@
 {
   "name": "@codexist/status-reports",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "description": "Log status updates with specific coloring and styling",
-  "author": "Jake Johnson (https://jakejohnson.pro)",
-  "main": "index.js",
-  "engines": {
-    "node": ">=8"
+  "author": {
+    "name": "Jake Johnson",
+    "url": "https://www.jakejohnson.pro"
   },
+  "main": "index.js",
+  "scripts": {
+    "test": "xo && nyc ava",
+    "xo-fix": "xo --fix"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "files": [
+    "index.js"
+  ],
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JakeJohnson05/status-reports.git"
-  },
-  "license": "ISC",
-  "scripts": {
-    "test": "xo && nyc ava"
-  },
-  "dependencies": {
-    "chalk": "^3.0.0",
-    "log-symbols": "^3.0.0"
   },
   "bugs": {
     "url": "https://github.com/JakeJohnson05/status-reports/issues"
   },
   "homepage": "https://github.com/JakeJohnson05/status-reports#readme",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "log-symbols": "^3.0.0"
+  },
   "devDependencies": {
     "ava": "^3.2.0",
     "nyc": "^15.0.0",
